@@ -77,19 +77,19 @@ export default function Footer() {
               cleaning solutions.
             </p>
             <div className="flex space-x-4">
-              <Link href="https://www.facebook.com/CoolCleanTechnologies" className="text-slate-400 hover:text-white transition-colors">
+              <Link href="https://www.facebook.com/CoolCleanTechnologies" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
                 <Facebook className="h-5 w-5" />
                 <span className="sr-only">Facebook</span>
               </Link>
-              <Link href="https://twitter.com/CoolCleanTecLLC" className="text-slate-400 hover:text-white transition-colors">
+              <Link href="https://twitter.com/CoolCleanTecLLC" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
                 <Twitter className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
               </Link>
-              <Link href="https://www.linkedin.com/company/cool-clean-technologies" className="text-slate-400 hover:text-white transition-colors">
+              <Link href="https://www.linkedin.com/company/cool-clean-technologies" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </Link>
-              <Link href="https://www.youtube.com/user/CoolClean2001" className="text-slate-400 hover:text-white transition-colors">
+              <Link href="https://www.youtube.com/user/CoolClean2001" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
                 <Youtube className="h-5 w-5" />
                 <span className="sr-only">YouTube</span>
               </Link>
@@ -165,8 +165,8 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-3 text-blue-400" />
-                <a href="mailto:info@coolclean.com" className="text-slate-400 hover:text-white transition-colors">
-                  info@coolclean.com
+                <a href="mailto:sales@coolclean.com" className="text-slate-400 hover:text-white transition-colors">
+                  sales@coolclean.com
                 </a>
               </li>
               <li className="flex items-center">

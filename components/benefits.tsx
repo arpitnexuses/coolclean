@@ -5,8 +5,16 @@ import { Card } from "@/components/ui/card"
 import { Recycle, Zap, Target, PiggyBank } from "lucide-react"
 import { motion, useInView } from "framer-motion"
 
+type ColorType = 'blue' | 'green' | 'indigo' | 'purple';
+type ColorClasses = {
+  bg: string;
+  text: string;
+  border: string;
+  highlight: string;
+};
+
 export default function Benefits() {
-  const [hoveredCard, setHoveredCard] = useState(null)
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 })
 
@@ -41,8 +49,8 @@ export default function Benefits() {
     },
   ]
 
-  const getColorClasses = (color, isHovered) => {
-    const colorMap = {
+  const getColorClasses = (color: ColorType, isHovered: boolean): ColorClasses => {
+    const colorMap: Record<ColorType, ColorClasses> = {
       blue: {
         bg: isHovered ? "bg-blue-600" : "bg-blue-50",
         text: isHovered ? "text-white" : "text-blue-600",
@@ -98,7 +106,7 @@ export default function Benefits() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {benefits.map((benefit, index) => {
             const isHovered = hoveredCard === benefit.id
-            const colorClasses = getColorClasses(benefit.color, isHovered)
+            const colorClasses = getColorClasses(benefit.color as ColorType, isHovered)
 
             return (
               <motion.div
