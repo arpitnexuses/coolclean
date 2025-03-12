@@ -14,8 +14,41 @@ export default function Footer() {
       setShowScrollTop(window.scrollY > 500)
     }
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    const handleResourceClick = (e: Event) => {
+      if (!(e.target instanceof HTMLElement)) return;
+      
+      const link = e.target.closest('a[href^="#"]');
+      if (!link) return;
+      
+      e.preventDefault();
+      const href = link.getAttribute('href');
+      if (!href) return;
+
+      const element = document.querySelector(href);
+      if (element) {
+        const headerOffset = 100;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    const resourcesLinks = document.querySelector('.resources-links');
+    if (resourcesLinks) {
+      resourcesLinks.addEventListener('click', handleResourceClick);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (resourcesLinks) {
+        resourcesLinks.removeEventListener('click', handleResourceClick);
+      }
+    }
   }, [])
 
   const scrollToTop = () => {
@@ -44,19 +77,19 @@ export default function Footer() {
               cleaning solutions.
             </p>
             <div className="flex space-x-4">
-              <Link href="#" className="text-slate-400 hover:text-white transition-colors">
+              <Link href="https://www.facebook.com/CoolCleanTechnologies" className="text-slate-400 hover:text-white transition-colors">
                 <Facebook className="h-5 w-5" />
                 <span className="sr-only">Facebook</span>
               </Link>
-              <Link href="#" className="text-slate-400 hover:text-white transition-colors">
+              <Link href="https://twitter.com/CoolCleanTecLLC" className="text-slate-400 hover:text-white transition-colors">
                 <Twitter className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
               </Link>
-              <Link href="#" className="text-slate-400 hover:text-white transition-colors">
+              <Link href="https://www.linkedin.com/company/cool-clean-technologies" className="text-slate-400 hover:text-white transition-colors">
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </Link>
-              <Link href="#" className="text-slate-400 hover:text-white transition-colors">
+              <Link href="https://www.youtube.com/user/CoolClean2001" className="text-slate-400 hover:text-white transition-colors">
                 <Youtube className="h-5 w-5" />
                 <span className="sr-only">YouTube</span>
               </Link>
@@ -67,28 +100,27 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-6 text-white">Solutions</h3>
             <ul className="space-y-4">
               <li>
-                <Link href="#" className="text-slate-400 hover:text-white transition-colors inline-block">
+                <Link 
+                  href="#surface-preparation" 
+                  className="text-slate-400 hover:text-white transition-colors inline-block"
+                >
                   Surface Preparation
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-slate-400 hover:text-white transition-colors inline-block">
+                <Link 
+                  href="#particle-removal" 
+                  className="text-slate-400 hover:text-white transition-colors inline-block"
+                >
                   Particle Removal
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-slate-400 hover:text-white transition-colors inline-block">
+                <Link 
+                  href="#ev-manufacturing" 
+                  className="text-slate-400 hover:text-white transition-colors inline-block"
+                >
                   EV Manufacturing
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-slate-400 hover:text-white transition-colors inline-block">
-                  Precision Cleaning
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-slate-400 hover:text-white transition-colors inline-block">
-                  Custom Solutions
                 </Link>
               </li>
             </ul>
@@ -98,11 +130,14 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-6 text-white">Resources</h3>
             <ul className="space-y-4">
               <li>
-                <Link href="#" className="text-slate-400 hover:text-white transition-colors inline-block">
+                <Link 
+                  href="#case-studies" 
+                  className="text-slate-400 hover:text-white transition-colors inline-block"
+                >
                   Case Studies
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="#" className="text-slate-400 hover:text-white transition-colors inline-block">
                   White Papers
                 </Link>
@@ -111,17 +146,17 @@ export default function Footer() {
                 <Link href="#" className="text-slate-400 hover:text-white transition-colors inline-block">
                   Technical Specs
                 </Link>
-              </li>
+              </li> */}
               <li>
-                <Link href="#" className="text-slate-400 hover:text-white transition-colors inline-block">
+                <Link href="https://www.coolclean.com/news/" className="text-slate-400 hover:text-white transition-colors inline-block">
                   Blog
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="#" className="text-slate-400 hover:text-white transition-colors inline-block">
                   FAQ
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 
@@ -136,8 +171,8 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-3 text-blue-400" />
-                <a href="tel:+18001234567" className="text-slate-400 hover:text-white transition-colors">
-                  1-800-123-4567
+                <a href="tel:+16518428600" className="text-slate-400 hover:text-white transition-colors">
+                +1 651-842-8600
                 </a>
               </li>
             </ul>

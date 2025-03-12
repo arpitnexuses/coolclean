@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef } from "react"
+import React, { useRef, useEffect } from "react"
 import { useState } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Paintbrush, Cpu, Battery, ArrowRight } from "lucide-react"
@@ -11,6 +11,22 @@ export default function Applications() {
   const [activeTab, setActiveTab] = useState("surface")
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 })
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash === '#surface-preparation') setActiveTab('surface');
+      if (hash === '#particle-removal') setActiveTab('particle');
+      if (hash === '#ev-manufacturing') setActiveTab('ev');
+    };
+
+    // Handle initial hash on mount
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   const applications = [
     {
@@ -104,7 +120,13 @@ export default function Applications() {
           <div className="relative overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-slate-200">
             <AnimatePresence mode="wait">
               {applications.map((app) => (
-                <TabsContent key={app.id} value={app.id} className="outline-none">
+                <TabsContent key={app.id} value={app.id} className="outline-none" id={
+                  app.id === "surface" 
+                    ? "surface-preparation"
+                    : app.id === "particle"
+                    ? "particle-removal"
+                    : "ev-manufacturing"
+                }>
                   <div className="grid md:grid-cols-2 items-center">
                     <motion.div
                       initial={{ opacity: 0, x: -20 }}

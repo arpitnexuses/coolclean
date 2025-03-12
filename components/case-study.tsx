@@ -13,7 +13,12 @@ export default function CaseStudy() {
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 })
 
   return (
-    <section id="case-study" ref={sectionRef} className="py-24 relative overflow-hidden">
+    <section 
+      id="case-studies" 
+      ref={sectionRef} 
+      className="py-24 relative overflow-hidden"
+      style={{ scrollMarginTop: '100px' }}
+    >
       <div className="absolute inset-0 bg-gradient-to-b from-slate-50 to-blue-50/30 pointer-events-none"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(59,130,246,0.1),transparent_50%)]"></div>
 

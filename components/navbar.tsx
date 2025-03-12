@@ -34,7 +34,7 @@ export default function Navbar() {
   const navItems = [
     { name: "Applications", href: "#applications" },
     { name: "Benefits", href: "#benefits" },
-    { name: "Case Study", href: "#case-study" },
+    { name: "Case Study", href: "#case-studies" },
   ]
 
   return (

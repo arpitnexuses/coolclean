@@ -1,16 +1,80 @@
 "use client"
 
-import React from "react"
-
-import { useState, useRef } from "react"
+import React, { useRef, useEffect } from "react"
+import { useState } from "react"
 import * as TabsPrimitive from "@radix-ui/react-tabs"
 import { Paintbrush, Cpu, Battery } from "lucide-react"
 import { motion, useInView } from "framer-motion"
 
+type TabId = 'surface' | 'particle' | 'ev';
+type HashMapping = {
+  [key: string]: TabId;
+};
+
 export default function Applications() {
-  const [activeTab, setActiveTab] = useState("surface")
+  const [activeTab, setActiveTab] = useState<TabId>("surface")
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 })
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.toLowerCase();
+      
+      const hashToTab: HashMapping = {
+        '#surface-preparation': 'surface',
+        '#particle-removal': 'particle',
+        '#ev-manufacturing': 'ev'
+      };
+
+      if (hash in hashToTab) {
+        setActiveTab(hashToTab[hash]);
+        
+        // Improved scroll handling
+        setTimeout(() => {
+          const element = document.getElementById(hash.slice(1));
+          if (element) {
+            const headerOffset = 100;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth"
+            });
+          }
+        }, 100); // Small delay to ensure DOM is ready
+      }
+    };
+
+    // Initial load handling
+    if (window.location.hash) {
+      handleHashChange();
+    }
+
+    // Add click handler for footer links
+    const handleFooterLinkClick = (e: any) => {
+      const href = e.target.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        window.location.hash = href;
+        handleHashChange();
+      }
+    };
+
+    const footerLinks = document.querySelectorAll('footer a[href^="#"]');
+    footerLinks.forEach(link => {
+      link.addEventListener('click', handleFooterLinkClick);
+    });
+
+    window.addEventListener('hashchange', handleHashChange);
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+      footerLinks.forEach(link => {
+        link.removeEventListener('click', handleFooterLinkClick);
+      });
+    };
+  }, []);
 
   const applications = [
     {
@@ -19,7 +83,7 @@ export default function Applications() {
       description:
         "Surface preparation is essential for optimal paint adhesion in automotive manufacturing. CO₂ cleaning removes dust, debris, and light oils from surfaces without leaving condensation or residue, resulting in superior paint finish and reduced defects.",
       icon: <Paintbrush className="h-7 w-7" />,
-      image: "/battery.png",
+      image: "/INOAC_2.jpg",
       alt: "Surface preparation with CO2 cleaning",
     },
     {
@@ -37,7 +101,7 @@ export default function Applications() {
       description:
         "Electric vehicle (EV) manufacturing demands sustainable, high-quality cleaning solutions. COz cleaning is ideal for battery cells, trays, and other EV components, offering precise and non-abrasive cleaning.",
       icon: <Battery className="h-7 w-7" />,
-      image: "/INOAC_2.jpg",
+      image: "/battery.png",
       alt: "EV manufacturing with CO2 cleaning",
     },
   ]
@@ -57,7 +121,7 @@ export default function Applications() {
             <span className="px-3 py-1 text-sm font-medium">Key Applications</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-4">
-            Dynamic Solutions for automotive sector
+            Dynamic Solutions for Automotive Sector
           </h2>
           <p className="text-xl text-slate-600 max-w-2xl">
             Our CO<sub>2</sub> spray cleaning system help automotive company to reduce scrap, cut labor cost and improve quality.  
@@ -67,7 +131,7 @@ export default function Applications() {
         <TabsPrimitive.Root
           defaultValue="surface"
           value={activeTab}
-          onValueChange={setActiveTab}
+          onValueChange={(value: string) => setActiveTab(value as TabId)}
           className="w-full max-w-5xl mx-auto"
         >
           <motion.div
@@ -107,7 +171,17 @@ export default function Applications() {
 
           <div className="relative overflow-hidden rounded-2xl bg-white shadow-xl">
             {applications.map((app) => (
-              <TabsPrimitive.Content key={app.id} value={app.id} className="outline-none">
+              <TabsPrimitive.Content 
+                key={app.id} 
+                value={app.id} 
+                className="outline-none relative"
+                id={`${app.id === "surface" 
+                  ? "surface-preparation"
+                  : app.id === "particle"
+                  ? "particle-removal"
+                  : "ev-manufacturing"}`}
+                style={{ scrollMarginTop: '120px' }}
+              >
                 <div className="grid md:grid-cols-2 items-center">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
