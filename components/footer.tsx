@@ -69,7 +69,7 @@ export default function Footer() {
                 transition={{ duration: 0.5 }}
                 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-200 bg-clip-text text-transparent"
               >
-                CoolClean
+                Cool Clean
               </motion.span>
             </Link>
             <p className="text-slate-400 mb-6">
