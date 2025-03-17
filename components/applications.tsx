@@ -99,7 +99,7 @@ export default function Applications() {
       id: "ev",
       title: "EV Manufacturing Cleaning",
       description:
-        "Electric vehicle (EV) manufacturing demands sustainable, high-quality cleaning solutions. COz cleaning is ideal for battery cells, trays, and other EV components, offering precise and non-abrasive cleaning.",
+        "Electric vehicle (EV) manufacturing demands sustainable, high-quality cleaning solutions. CO₂ cleaning is ideal for battery cells, trays, and other EV components, offering precise and non-abrasive cleaning.",
       icon: <Battery className="h-7 w-7" />,
       image: "/battery.png",
       alt: "EV manufacturing with CO2 cleaning",
@@ -124,7 +124,7 @@ export default function Applications() {
             Dynamic Solutions for Automotive Sector
           </h2>
           <p className="text-xl text-slate-600 max-w-2xl">
-            Our CO<sub>2</sub> spray cleaning system help automotive company to reduce scrap, cut labor cost and improve quality.  
+            Our CO<sub>2</sub> spray cleaning solutions help automotive companies to reduce scrap, cut labor cost and improve quality.  
           </p>
         </motion.div>
 
