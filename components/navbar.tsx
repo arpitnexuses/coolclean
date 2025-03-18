@@ -45,7 +45,12 @@ export default function Navbar() {
     >
       <div className="container px-4 md:px-6">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2 z-50">
+          <Link 
+            href="https://www.coolclean.com" 
+            className="flex items-center space-x-2 z-50"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Image
               src="https://www.coolclean.com/wp-content/uploads/2023/12/logo.png"
               alt="CoolClean Logo"
