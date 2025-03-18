@@ -125,7 +125,7 @@ export default function CaseStudy() {
 
                     <Button asChild className="bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-200/50 group">
                       <Link
-                        href="https://drive.google.com/file/d/1PB-Ew5QzZYIsz7A18y-euO8PQWddX5IA/view"
+                        href="https://drive.google.com/file/d/1M5FEjtASdSAQYVA-imqZ-QizIKYQp6Ci/view?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
