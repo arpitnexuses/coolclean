@@ -62,7 +62,7 @@ export default function Footer() {
       <div className="container px-4 md:px-6 relative">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
-            <Link href="http://coolclean.com" className="flex items-center space-x-2 mb-6">
+            <Link href="http://coolclean.com" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 mb-6">
               <motion.span
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
