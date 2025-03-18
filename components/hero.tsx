@@ -53,7 +53,7 @@ export default function Hero() {
                 variant="outline"
                 className="border-blue-200 text-blue-600 hover:bg-blue-50 rounded-full"
               >
-                <Link href="#case-study">View Case Study</Link>
+                <Link href="#case-studies" scroll={true}>View Case Study</Link>
               </Button>
             </div>
           </motion.div>
